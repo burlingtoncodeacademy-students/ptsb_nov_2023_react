@@ -1,0 +1,45 @@
+.App {
+  text-align: center;
+  background-color: grey;
+  min-height: 100dvh;
+}
+
+button {
+  padding: 1em;
+  cursor: pointer;
+}
+
+.box {
+  box-sizing: border-box;
+  color: white;
+  text-shadow: 0.2em 0.2em 0.2em black;
+}
+
+.box:hover {
+  border-radius: 10em;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  animation: shrink 1s infinite alternate-reverse ease-in-out;
+  filter: drop-shadow(0.1em 0.1em 0.1em black);
+}
+.box:not(:hover) {
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+  animation: shrink 1s infinite alternate-reverse ease-in-out;
+  filter: drop-shadow(1em 1em 1em black);
+}
+@keyframes shrink {
+  from {
+    transform: scale(45%);
+    opacity: 0.1;
+    filter: drop-shadow(0.1em 0.1em 0.1em black);
+    border: solid 0.1em steelblue;
+  }
+  to {
+    opacity: 1;
+    transform: scale(100%);
+    filter: drop-shadow(1em 1em 1em black);
+    border-width: 2em;
+    border: solid 1.5em white;
+  }
+}
