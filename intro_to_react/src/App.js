@@ -1,6 +1,9 @@
 //? Can declare imports from libraries or local files
 import "./App.css";
 
+//? Import counter component
+import Counter from "./components/Counter/Counter";
+
 //? Import a hook from React, in this useState
 import { useState } from "react";
 
@@ -38,10 +41,18 @@ const styles = {
 function App() {
   //? Setting up state with the useState hook
   //? [ variable, functionToUpdateVariable ]
-
-  const [count, setCount] = useState(0);
+  const [showCounter, setShowCounter] = useState(false);
 
   let myName = "Amit Mangat";
+
+  // Setup an array of values that represent delay times (for box animation)
+  let boxCount = [0.2, 0.4, 0.6, 0.8, 1];
+
+  // Setup helper function to get random vals for RGB
+  const randomRGBColor = () => {
+    const randomNum = () => Math.floor(Math.random() * 256);
+    return `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`;
+  };
 
   console.log("App component remounted");
   return (
@@ -49,7 +60,13 @@ function App() {
       {/* Inline styling */}
       <h1 style={{ marginTop: 0 }}>Text from App, Parent Component</h1>
       {/* Access JS with {} in the JSX area/ the return  */}
-      <h1>{count}</h1>
+
+      {showCounter ? <Counter /> : null}
+      <button onClick={() => setShowCounter(!showCounter)}>
+        Show/Hide Counter
+      </button>
+
+      {/* <h1>{count}</h1>
 
       <button
         onClick={() => {
@@ -57,19 +74,43 @@ function App() {
         }}
       >
         Increase count
-      </button>
+      </button> */}
 
       {/* Style, referencing the obj above  */}
       <div style={styles.div}>
         <MyComponentInApp myName={myName} />
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {/*//? Map is great in JSX to render multiple items. Array of HTML */}
+          {/* {[1, 2, 3, 4, 5].map((i) => {
+            return <p>hi </p>;
+          })} */}
+          {boxCount.map((i, idx) => {
+            return (
+              <Box
+                key={idx}
+                // Pass the function of randomRGB as a prop.
+                randomRGBColor={randomRGBColor}
+                delay={i}
+                num={idx + 1}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 }
 
+// Another component
 const MyComponentInApp = (props) => {
   console.log(props);
-
   return (
     <>
       <div
@@ -83,6 +124,34 @@ const MyComponentInApp = (props) => {
         <p>{props.myName}</p>
       </div>
     </>
+  );
+};
+
+// Another component
+const Box = (props) => {
+  return (
+    <div
+      style={{
+        minWidth: "200px",
+        minHeight: "200px",
+        margin: "1em",
+        backgroundColor: props.randomRGBColor(),
+        animationDelay: `${props.delay}s`,
+      }}
+      className="box"
+    >
+      <h1
+        style={{
+          position: "relative",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+          margin: 0,
+        }}
+      >
+        Box {props.num}
+      </h1>
+    </div>
   );
 };
 
