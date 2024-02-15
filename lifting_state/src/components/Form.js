@@ -14,6 +14,7 @@ const Form = (props) => {
     >
       <label htmlFor="username">UserName</label>
       <input
+        value={props.username}
         id="username"
         required
         placeholder="Enter Username"
@@ -22,6 +23,7 @@ const Form = (props) => {
 
       <label htmlFor="password">Password </label>
       <input
+        value={props.password}
         id="password"
         required
         type="password"
