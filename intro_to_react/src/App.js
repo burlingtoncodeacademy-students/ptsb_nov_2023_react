@@ -137,6 +137,7 @@ const Box = (props) => {
         margin: "1em",
         backgroundColor: props.randomRGBColor(),
         animationDelay: `${props.delay}s`,
+        position: "relative",
       }}
       className="box"
     >
