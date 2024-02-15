@@ -9,14 +9,30 @@ import Nav from "./components/Nav";
 function App() {
   // STATE
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("Amit");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setUserName("");
+    setPassword("");
+  };
 
   return (
     <div className="App">
-      <Nav />
+      <Nav
+        loggedIn={loggedIn}
+        userName={userName}
+        handleLogout={handleLogout}
+      />
       {!loggedIn ? (
-        <Form userName={userName} setUserName={setUserName} />
+        <Form
+          userName={userName}
+          setUserName={setUserName}
+          password={password}
+          setPassword={setPassword}
+          setLoggedIn={setLoggedIn}
+        />
       ) : (
         <Home />
       )}

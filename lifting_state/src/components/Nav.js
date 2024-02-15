@@ -1,6 +1,6 @@
 import React from "react";
 
-const Nav = () => {
+const Nav = (props) => {
   return (
     <nav>
       <p>Home</p>
@@ -8,16 +8,19 @@ const Nav = () => {
       <p>Link</p>
       <p>Link</p>
 
-      <div className="row nav-user">
-        <h5 style={{ margin: 0 }}>UserName</h5>
-        <button
-          onClick={() => {
-            console.log("User has logged out");
-          }}
-        >
-          LOGOUT
-        </button>
-      </div>
+      {props.loggedIn && (
+        <div className="row nav-user">
+          <h5 style={{ margin: 0 }}>{props.userName}</h5>
+          <button
+            onClick={() => {
+              props.handleLogout();
+              console.log("User has logged out");
+            }}
+          >
+            LOGOUT
+          </button>
+        </div>
+      )}
     </nav>
   );
 };

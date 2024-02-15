@@ -1,11 +1,15 @@
 import React from "react";
 
-const Form = () => {
+const Form = (props) => {
   return (
     <form
       className="auth-form col"
       onSubmit={(e) => {
         e.preventDefault();
+
+        //? Do a fetch here
+
+        props.setLoggedIn(true);
       }}
     >
       <label htmlFor="username">UserName</label>
@@ -13,7 +17,7 @@ const Form = () => {
         id="username"
         required
         placeholder="Enter Username"
-        onChange={() => {}}
+        onChange={(e) => props.setUserName(e.target.value)}
       />
 
       <label htmlFor="password">Password </label>
@@ -22,7 +26,7 @@ const Form = () => {
         required
         type="password"
         placeholder="Enter Password"
-        onChange={() => {}}
+        onChange={(e) => props.setPassword(e.target.value)}
       />
 
       <button id="auth-form-btn" type="submit">
