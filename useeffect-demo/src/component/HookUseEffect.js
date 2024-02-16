@@ -30,12 +30,15 @@ const HookUseEffect = () => {
   //     console.log("COMPONENT MOUNTED OR COUNT HAS CHANGED!");
   //   }, [count]);
 
-  //! Be cautious of infinite loops, add dep array if state is being update in useEffect
+  //! Be cautious of infinite loops, add dep array if state is being updated in useEffect
   //   useEffect(() => {
   //     console.log("I am rendering or re-rendering");
   //     setCount(count + 1);
   //   });
+  //?   ^ Pass an [] as a 2nd argument to useEffect. To add a dep array.
+
   //! Example of setinterval in useEffect
+  //?   - Use a return to cleanup the interval, or you may have a memory leak in your application
   //   useEffect(() => {
   //     let interval = setInterval(() => setCount((prev) => prev + 1), 1000);
 
