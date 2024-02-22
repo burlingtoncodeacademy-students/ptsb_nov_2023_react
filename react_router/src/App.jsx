@@ -21,6 +21,7 @@ function App() {
 
           <Route path="/welcome/*" element={<Welcome />} />
           <Route path="/news/*" element={<News />} />
+
           <Route path="/about" element={<About />} />
         </Routes>
       </header>
