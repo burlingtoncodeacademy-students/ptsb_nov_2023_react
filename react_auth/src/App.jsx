@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
+import Products from "./components/Products/Products";
 
 import Signup from "./components/Signup";
 
@@ -11,6 +12,12 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [sessionToken, setSessionToken] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("MyToken")) {
+      setSessionToken(localStorage.getItem("MyToken"));
+    }
+  }, []);
 
   const handleChange = (state, value) => {
     switch (state) {
@@ -48,10 +55,22 @@ function App() {
         })
       ).json();
 
-      console.log(response);
+      updateToken(response.Token);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const updateToken = (token) => {
+    console.log("Token updated!");
+    localStorage.setItem("MyToken", token);
+    setSessionToken(token);
+  };
+
+  const clearToken = () => {
+    console.log("Token cleared!");
+    localStorage.removeItem("MyToken");
+    setSessionToken("");
   };
 
   return (
@@ -60,8 +79,8 @@ function App() {
         <Signup handleChange={handleChange} handleSignup={handleSignup} />
       ) : (
         <>
-          <button>Logout</button>
-          <p>[Products]</p>
+          <button onClick={clearToken}>Logout</button>
+          <Products />
         </>
       )}
     </>
