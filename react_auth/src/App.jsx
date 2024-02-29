@@ -4,6 +4,7 @@ import "./App.css";
 import Products from "./components/Products/Products";
 
 import Signup from "./components/Signup";
+import Posts from "./components/Posts";
 
 //? App.js - The root component ⭐
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [sessionToken, setSessionToken] = useState("");
+  const [showProducts, setShowProducts] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem("MyToken")) {
@@ -80,7 +82,10 @@ function App() {
       ) : (
         <>
           <button onClick={clearToken}>Logout</button>
-          <Products />
+          <button onClick={() => setShowProducts((prev) => !prev)}>
+            {showProducts ? "Show Posts" : "Show Products"}
+          </button>
+          {showProducts ? <Products /> : <Posts />}
         </>
       )}
     </>
