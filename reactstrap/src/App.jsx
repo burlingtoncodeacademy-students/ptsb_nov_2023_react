@@ -78,15 +78,16 @@ function App() {
             minLength={8}
             id="example1"
           />
-          <Label htmlFor="example1"></Label>
+          <Label htmlFor="example1">Email</Label>
           <FormFeedback tooltip valid>
             Will show if input is valid
           </FormFeedback>
-          <FormText>Example help text, that remains unchanged</FormText>
-          <Button type="submit">Submit</Button>
+          <div className="form-col">
+            <FormText>Example help text, that remains unchanged</FormText>
+            <Button type="submit">Submit</Button>
+          </div>
         </FormGroup>
       </Form>
-
       <FormGroup>
         <Label htmlFor="exampleDate">Date</Label>
         <Input id="exampleDate" name="date" type="date" />
@@ -123,7 +124,10 @@ function App() {
         I am an alert and I can be dismissed
       </UncontrolledAlert>
 
-      <Spinner className="m-5" color="primary"></Spinner>
+      <h2>Spinners</h2>
+      <Spinner size="lg" type="grow" className="m-5" color="primary" />
+
+      <Spinner size="sm" type="border" className="m-5" color="success" />
 
       <div>
         <Button outline={true} color="info" onClick={toggleModal}>
