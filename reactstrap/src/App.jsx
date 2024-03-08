@@ -84,7 +84,9 @@ function App() {
           </FormFeedback>
           <div className="form-col">
             <FormText>Example help text, that remains unchanged</FormText>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" color="success">
+              Submit
+            </Button>
           </div>
         </FormGroup>
       </Form>
@@ -93,7 +95,9 @@ function App() {
         <Input id="exampleDate" name="date" type="date" />
       </FormGroup>
 
-      <Button onClick={toggleCollapse}>Toggle Collapse</Button>
+      <Button onClick={toggleCollapse} color="warning">
+        Toggle Collapse
+      </Button>
 
       <Collapse isOpen={showCollapse}>
         <Card>
@@ -101,7 +105,7 @@ function App() {
         </Card>
       </Collapse>
 
-      <Button type="button" id="UncontrolledPopover">
+      <Button type="button" id="UncontrolledPopover" color="success">
         Launch Popover
       </Button>
 
@@ -110,7 +114,9 @@ function App() {
         <PopoverBody>I will pop up as a small message window!</PopoverBody>
       </UncontrolledPopover>
 
-      <Button onClick={toggleToast}>Show/Hide Toast</Button>
+      <Button onClick={toggleToast} color="primary">
+        Show/Hide Toast
+      </Button>
       <Fade timeout={500} in={showToast}>
         <Toast isOpen={showToast}>
           <ToastHeader icon="primary" toggle={toggleToast}>
