@@ -16,14 +16,16 @@ import Product from "../Product/Product";
 
 const Products = () => {
   const [results, setResults] = useState([]);
-  const [maxPrice, setMaxPrice] = useState(799);
+  const [maxPrice, setMaxPrice] = useState(0);
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8081/product?min=0&max=${maxPrice}&tags=${tags}`,
+          `http://localhost:8081/product?min=0&max=${
+            maxPrice + 1
+          }&tags=${tags}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("MyToken")}`,
@@ -53,10 +55,15 @@ const Products = () => {
 
   return (
     <div>
-      <input type="number" onChange={(e) => setMaxPrice(e.target.value)} />
-
-      <h1>Products</h1>
       {tags.toString()}
+      <h1>Products</h1>
+      <input
+        min={0}
+        placeholder="enter a max price"
+        value={maxPrice}
+        type="number"
+        onChange={(e) => setMaxPrice(Number(e.target.value))}
+      />
       <div>
         <input
           type="checkbox"
